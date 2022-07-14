@@ -46,23 +46,25 @@ class Signup (View):
     def validateCustomer(self, customer):
         error_message = None
         if (not customer.first_name):
-            error_message = "Please Enter your First Name !!"
+            error_message = "Por favor ingresar su nombre"
         elif len (customer.first_name) < 3:
-            error_message = 'First Name must be 3 char long or more'
+            error_message = 'Su nombre debe tener, al menos, 3 letras'
         elif not customer.last_name:
-            error_message = 'Please Enter your Last Name'
+            error_message = 'Por favor ingrese su apellido'
         elif len (customer.last_name) < 3:
-            error_message = 'Last Name must be 3 char long or more'
+            error_message = 'Su apellido debe tener, al menos, 3 letras'
         elif not customer.phone:
-            error_message = 'Enter your Phone Number'
-        elif len (customer.phone) < 10:
-            error_message = 'Phone Number must be 10 char Long'
+            error_message = 'Ingrese su número de teléfono'
+        elif len (customer.phone) < 9:
+            error_message = 'El número de teléfono debe tener 9 dígitos'
+        elif len (customer.password) == 0:
+            error_message = 'Debe ingresar una contraseña'
         elif len (customer.password) < 5:
-            error_message = 'Password must be 5 char long'
-        elif len (customer.email) < 5:
-            error_message = 'Email must be 5 char long'
+            error_message = 'La contraseña debe tener, al menos, 5 caracteres'
+        elif len (customer.email) < 10:
+            error_message = 'Dirección de correo muy corta (debe ser de al menos 10 caracteres)'
         elif customer.isExists ():
-            error_message = 'Email Address Already Registered..'
+            error_message = 'Correo ya registrado'
         # saving
 
         return error_message
